@@ -66,6 +66,8 @@ public:
 	int RxLine(string &buff, long to_sec = 1, long to_usec = 0);
 	int Rx(string &buff, size_t &len, long to_sec = 1, long to_usec = 0);
 
+	int GetSocket() { return sock; }
+
 protected:
 	int sock;
 

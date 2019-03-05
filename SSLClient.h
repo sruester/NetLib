@@ -118,7 +118,5 @@ private:
 
 };
 
-bool SSLClient::libssl_is_initialized = false;
-pthread_mutex_t SSLClient::glob_sslclient_lock = PTHREAD_MUTEX_INITIALIZER;
 
 #endif // __SSLCLIENT_H_SEEN

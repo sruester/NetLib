@@ -4,9 +4,13 @@ LDFLAGS=-lpthread -lssl -lcrypto -shared
 SOURCES=ClientSocket.cpp  HexDumper.cpp  IPGenerator.cpp  Thread.cpp  TorConnector.cpp  UdpConnector.cpp SmbGen.cpp SSLClient.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=libNetLib.so
+STATICLIB=libNetLib.a
+OSSL_PATH=/opt/openssl-1.1.0g/lib
 
+all: $(SOURCES) $(EXECUTABLE) $(STATICLIB)
 
-all: $(SOURCES) $(EXECUTABLE)
+$(STATICLIB): $(OBJECTS)
+	ar rvs $(STATICLIB) $(OBJECTS)
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
