@@ -152,7 +152,7 @@ bool UdpConnector::SetDestination(string host, unsigned short port){
 	return destination_ok;
 }
 
-void UdpConnector::WriteData(const char *data, size_t len){
+void UdpConnector::WriteData(const uint8_t *data, size_t len){
 	int r;
 
 	if(!len)
@@ -174,7 +174,7 @@ void UdpConnector::WriteData(const char *data, size_t len){
 	return;
 }
 
-bool UdpConnector::Tx(const char *data, unsigned int datalen){
+bool UdpConnector::Tx(const uint8_t *data, unsigned int datalen){
 	try {
 		WriteData(data, datalen);
 	}catch(const char *err){
@@ -186,7 +186,7 @@ bool UdpConnector::Tx(const char *data, unsigned int datalen){
 }
 
 bool UdpConnector::Tx(string data){
-	return Tx(data.c_str(), data.length());
+	return Tx((const uint8_t*)data.c_str(), data.length());
 }
 
 

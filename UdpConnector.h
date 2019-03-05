@@ -64,7 +64,7 @@ public:
 	int Rx(string &data, string &fromip, uint16_t &fromport, long to_sec, long to_usec);
 
 	bool SetDestination(string host, unsigned short port);
-	bool Tx(const char *data, unsigned int datalen);
+	bool Tx(const uint8_t *data, unsigned int datalen);
 	bool Tx(string data);
 
 private:
@@ -79,7 +79,7 @@ private:
 	struct sockaddr_in dest;
 	void ResolveHostname(string host);
 
-	void WriteData(const char *data, size_t len);
+	void WriteData(const uint8_t *data, size_t len);
 
 	bool TryRead(long to_sec, long to_usec);
 };
