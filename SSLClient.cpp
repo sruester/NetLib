@@ -39,6 +39,10 @@
 
 #include "SSLClient.h"
 
+bool SSLClient::libssl_is_initialized = false;
+pthread_mutex_t SSLClient::glob_sslclient_lock = PTHREAD_MUTEX_INITIALIZER;
+
+
 /*
  * Constructor / Destructor
  */
@@ -371,7 +375,9 @@ void SSLClient::WriteData(const char *data, size_t len){
 
 bool SSLClient::TryRead(long to_sec, long to_usec){
     if(SSL_has_pending(ssl))
+    {
         return true;
+    }
 
 	fd_set fdsr, fdse;
 
